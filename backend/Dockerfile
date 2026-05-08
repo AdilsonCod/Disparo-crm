@@ -3,13 +3,11 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Instala dependências (incluindo devDeps para poder compilar TypeScript)
+# Copia o package.json e o schema do Prisma antes do npm ci
+# (o postinstall script roda 'prisma generate' e precisa do schema)
 COPY package*.json ./
-RUN npm ci
-
-# Gera o Prisma Client
 COPY prisma ./prisma/
-RUN npx prisma generate
+RUN npm ci
 
 # Copia o restante e compila o TypeScript
 COPY . .
@@ -20,15 +18,13 @@ FROM node:20-alpine AS production
 
 WORKDIR /app
 
-# Copia apenas o necessário para produção
+# Copia o package.json e o schema do Prisma antes do npm ci --omit=dev
+# (o postinstall script roda 'prisma generate' e precisa do schema)
 COPY package*.json ./
+COPY prisma ./prisma/
 RUN npm ci --omit=dev
 
-# Gera o Prisma Client no container de produção
-COPY prisma ./prisma/
-RUN npx prisma generate
-
-# Copia o build compilado
+# Copia o build compilado do stage de build
 COPY --from=builder /app/dist ./dist
 
 EXPOSE 3001
