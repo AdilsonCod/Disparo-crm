@@ -1,0 +1,244 @@
+.content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+}
+
+.createBtn {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.createBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+/* Stats */
+.statsRow {
+  display: flex;
+  gap: 1rem;
+}
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 2rem;
+  min-width: 140px;
+}
+.statNum {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+.statLabel {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Campaign Cards Grid */
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.campaignCard {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  transition: border-color var(--transition-fast);
+}
+.campaignCard:hover {
+  border-color: var(--border-focus);
+}
+
+.cardIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardInfo {
+  flex: 1;
+  min-width: 0;
+}
+.cardInfo h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.cardMeta span {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Tags row */
+.cardTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+.tagChip {
+  padding: 0.15rem 0.5rem;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  border: 1px solid;
+}
+
+/* Progress */
+.cardProgress {
+  width: 150px;
+  flex-shrink: 0;
+  text-align: center;
+}
+.progressBar {
+  width: 100%;
+  height: 6px;
+  background: var(--bg-primary);
+  border-radius: 100px;
+  overflow: hidden;
+  margin-bottom: 0.3rem;
+}
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: 100px;
+  transition: width 0.5s ease;
+}
+.progressText {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Status Badge */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.statusBadge[data-status="DRAFT"] {
+  background: rgba(148, 163, 184, 0.1);
+  color: #94a3b8;
+}
+.statusBadge[data-status="SCHEDULED"] {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+.statusBadge[data-status="PROCESSING"] {
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+}
+.statusBadge[data-status="PAUSED"] {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+.statusBadge[data-status="COMPLETED"] {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+.statusBadge[data-status="FAILED"] {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+/* Card Actions */
+.cardActions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.actionBtn {
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+.actionBtn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+}
+.playBtn:hover { color: #10b981; }
+.pauseBtn:hover { color: #f59e0b; }
+.deleteBtn:hover { color: #ef4444; }
+
+/* Loading & Empty */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  color: var(--text-secondary);
+  gap: 1rem;
+}
+.spin {
+  animation: spin 1s linear infinite;
+  color: var(--accent-primary);
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  background: rgba(18, 18, 20, 0.3);
+  border: 1px dashed var(--border-light);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+.emptyIcon {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+.emptyState h3 {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+.emptyState p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}

@@ -1,0 +1,122 @@
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(10, 10, 11, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  width: 100%; max-width: 500px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.header h3 { font-size: 1.1rem; font-weight: 600; }
+.header button { color: var(--text-secondary); transition: color var(--transition-fast); }
+.header button:hover { color: var(--text-primary); }
+
+.body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+
+.formatHint {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem; color: var(--text-secondary);
+}
+.formatHint code {
+  background: rgba(255,255,255,0.1); padding: 0.1rem 0.4rem;
+  border-radius: 4px; color: var(--accent-primary);
+}
+
+.error {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: rgba(239,68,68,0.1); color: #ef4444;
+  padding: 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem;
+}
+
+.dropZone {
+  border: 2px dashed var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+}
+
+.dropZone:hover, .dropZone.dragging {
+  border-color: var(--accent-primary);
+  background: rgba(99,102,241,0.05);
+}
+
+.dropZone p { color: var(--text-primary); font-size: 0.95rem; }
+.dropZone p span { color: var(--accent-primary); font-weight: 500; }
+.dropZone span { font-size: 0.8rem; color: var(--text-muted); }
+
+.uploadIcon { color: var(--text-muted); margin-bottom: 0.5rem; }
+
+.hasFile { border-color: var(--accent-primary); background: rgba(99,102,241,0.05); }
+.fileIcon { color: var(--accent-primary); margin-bottom: 0.5rem; }
+.fileName { color: var(--text-primary); font-weight: 500; }
+.fileSize { color: var(--text-muted); font-size: 0.8rem; }
+
+.hiddenInput { display: none; }
+
+.actions { display: flex; gap: 1rem; }
+
+.cancelBtn {
+  flex: 1; padding: 0.875rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  transition: background var(--transition-fast);
+}
+.cancelBtn:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+
+.importBtn {
+  flex: 2; padding: 0.875rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white; font-weight: 600;
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  transition: opacity var(--transition-fast);
+}
+.importBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+.spin { animation: spin 1s linear infinite; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Result Screen */
+.result {
+  display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+  padding: 1rem 0;
+}
+.successIcon { color: #10b981; }
+.result h3 { font-size: 1.25rem; font-weight: 600; }
+.stats { display: flex; align-items: center; gap: 2rem; }
+.stat { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; }
+.statNum { font-size: 2rem; font-weight: 700; color: var(--accent-primary); }
+.stat span:last-child { font-size: 0.8rem; color: var(--text-secondary); }
+.statDivider { width: 1px; height: 40px; background: var(--border-light); }
+.doneBtn {
+  width: 100%; padding: 0.875rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white; font-weight: 600;
+}

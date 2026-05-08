@@ -1,0 +1,313 @@
+.container {
+  display: flex;
+  height: calc(100vh - 80px); /* Adjust based on header height */
+  gap: 1.5rem;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+.sidebarHeader {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebarHeader h2 {
+  font-size: 1.1rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ticketList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ticketItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  color: inherit;
+}
+
+.ticketItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ticketItem.active {
+  background: rgba(99, 102, 241, 0.15);
+  box-shadow: inset 3px 0 0 #6366f1;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: white;
+  flex-shrink: 0;
+}
+
+.ticketInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.ticketName {
+  font-weight: 500;
+  margin: 0 0 0.25rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ticketPreview {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ticketTime {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.mainChat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+.chatHeader {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatHeaderInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chatHeaderName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.chatHeaderPhone {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+.kanbanSelect {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.messagesArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.messageWrapper {
+  display: flex;
+  max-width: 75%;
+}
+
+.messageWrapper.fromMe {
+  align-self: flex-end;
+}
+
+.messageWrapper.fromThem {
+  align-self: flex-start;
+}
+
+.messageBubble {
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  position: relative;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.messageWrapper.fromMe .messageBubble {
+  background: #6366f1;
+  color: white;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.messageWrapper.fromThem .messageBubble {
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom-left-radius: 0.25rem;
+}
+
+.messageTime {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  display: block;
+  text-align: right;
+  margin-top: 0.25rem;
+}
+
+.inputArea {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.inputForm {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.chatInput {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  color: white;
+  outline: none;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: none;
+  min-height: 48px;
+  max-height: 120px;
+}
+
+.chatInput:focus {
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.sendBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #6366f1;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sendBtn:hover:not(:disabled) {
+  background: #4f46e5;
+  transform: scale(1.05);
+}
+
+.sendBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.emptyState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  padding: 2rem;
+}
+
+.emptyState svg {
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.rightPanel {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+.infoCard {
+  padding: 1.5rem;
+}
+
+.infoSection {
+  margin-bottom: 1.5rem;
+}
+
+.infoSection:last-child {
+  margin-bottom: 0;
+}
+
+.infoLabel {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 0 0.5rem 0;
+}
+
+.infoValue {
+  font-size: 0.95rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+}

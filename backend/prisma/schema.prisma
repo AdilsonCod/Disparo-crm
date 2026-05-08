@@ -1,0 +1,142 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(AGENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  instances Instance[]
+  campaigns Campaign[]
+  contacts  Contact[]
+  tags      Tag[]
+  tickets   Ticket[]
+}
+
+enum Role {
+  ADMIN
+  AGENT
+}
+
+model Instance {
+  id                    String   @id @default(uuid())
+  name                  String
+  evolutionInstanceName String   @unique
+  status                String   @default("DISCONNECTED")
+  token                 String?
+  qrCode                String?
+  userId                String
+  user                  User     @relation(fields: [userId], references: [id])
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  campaigns Campaign[]
+  tickets   Ticket[]
+}
+
+model Campaign {
+  id             String    @id @default(uuid())
+  name           String
+  status         String    @default("DRAFT") // DRAFT, SCHEDULED, PROCESSING, PAUSED, COMPLETED, FAILED
+  message        String
+  mediaUrl       String?
+  mediaType      String?   // image, document, audio
+  useSpintax     Boolean   @default(false)
+
+  // Scheduling
+  scheduledAt    DateTime?
+  startedAt      DateTime?
+  completedAt    DateTime?
+
+  // Humanization delays (seconds)
+  minDelay       Int       @default(15)
+  maxDelay       Int       @default(35)
+  pauseStart     String?   // e.g. "20:00"
+  pauseEnd       String?   // e.g. "08:00"
+
+  // Stats
+  totalContacts  Int       @default(0)
+  sentCount      Int       @default(0)
+  failedCount    Int       @default(0)
+
+  // Relations
+  instanceId     String
+  instance       Instance  @relation(fields: [instanceId], references: [id])
+  userId         String
+  user           User      @relation(fields: [userId], references: [id])
+  tags           Tag[]     @relation("CampaignTags")
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model Contact {
+  id        String   @id @default(uuid())
+  phone     String   // Numero normalizado, ex: 5511999999999
+  name      String?
+  email     String?
+  notes     String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  tags      Tag[]    @relation("ContactTags")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([phone, userId]) // Evita duplicatas por usuario
+  tickets Ticket[]
+}
+
+model Tag {
+  id        String    @id @default(uuid())
+  name      String
+  color     String    @default("#6366f1") // Cor hex
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  contacts  Contact[]  @relation("ContactTags")
+  campaigns Campaign[] @relation("CampaignTags")
+  createdAt DateTime   @default(now())
+
+  @@unique([name, userId])
+}
+
+model Ticket {
+  id             String    @id @default(uuid())
+  status         String    @default("OPEN") // OPEN, IN_PROGRESS, CLOSED
+  
+  contactId      String
+  contact        Contact   @relation(fields: [contactId], references: [id])
+  
+  instanceId     String
+  instance       Instance  @relation(fields: [instanceId], references: [id])
+  
+  assignedUserId String?
+  assignedUser   User?     @relation(fields: [assignedUserId], references: [id])
+
+  messages       Message[]
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  body      String
+  fromMe    Boolean  @default(false)
+  type      String   @default("text") // text, image, audio, document, etc.
+  timestamp DateTime @default(now())
+  
+  ticketId  String
+  ticket    Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}

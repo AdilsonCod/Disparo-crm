@@ -1,0 +1,131 @@
+.content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.topBar {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+
+.searchWrap {
+  flex: 1; max-width: 400px;
+  display: flex; align-items: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 0.6rem 1rem;
+  transition: border-color var(--transition-fast);
+}
+.searchWrap:focus-within { border-color: var(--border-focus); }
+.searchIcon { color: var(--text-muted); margin-right: 0.5rem; flex-shrink: 0; }
+.searchInput {
+  background: transparent; border: none; outline: none;
+  color: var(--text-primary); font-size: 0.9rem; width: 100%;
+}
+
+.actions { display: flex; gap: 0.75rem; }
+
+.importBtn {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-weight: 500; font-size: 0.9rem;
+  transition: all var(--transition-fast);
+}
+.importBtn:hover { background: rgba(255,255,255,0.1); border-color: var(--accent-primary); color: var(--accent-primary); }
+
+.statsRow {
+  display: flex; gap: 1rem;
+}
+.statCard {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 1rem 2rem; min-width: 150px;
+}
+.statNum { font-size: 2rem; font-weight: 700; color: var(--accent-primary); }
+.statLabel { font-size: 0.8rem; color: var(--text-secondary); }
+
+/* Add Form */
+.addFormCard { padding: 1.5rem; }
+.addFormCard h3 {
+  font-size: 1rem; font-weight: 600; margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  color: var(--text-primary);
+}
+.addForm {
+  display: flex; gap: 0.75rem;
+}
+.addForm input {
+  flex: 1; background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 0.7rem 1rem; color: var(--text-primary);
+  outline: none; transition: border-color var(--transition-fast);
+}
+.addForm input:focus { border-color: var(--accent-primary); }
+.addForm button {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white; font-weight: 600; padding: 0.7rem 1.5rem;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; gap: 0.5rem;
+  transition: opacity var(--transition-fast);
+}
+.addForm button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Table */
+.tableCard { padding: 0; overflow: hidden; }
+.tableWrap { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; }
+.table thead tr { border-bottom: 1px solid var(--border-light); }
+.table th {
+  text-align: left; padding: 1rem 1.5rem;
+  font-size: 0.8rem; font-weight: 600;
+  color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;
+  display: table-cell;
+}
+.table th { display: table-cell; white-space: nowrap; }
+/* override: th display */
+.table th:first-child { padding-left: 1.5rem; }
+.table tbody tr {
+  border-bottom: 1px solid var(--border-light);
+  transition: background var(--transition-fast);
+}
+.table tbody tr:last-child { border-bottom: none; }
+.table tbody tr:hover { background: rgba(255,255,255,0.02); }
+.table td {
+  padding: 1rem 1.5rem;
+  color: var(--text-primary); font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.nameCell { font-weight: 500; }
+.noData { color: var(--text-muted); }
+.phone { background: var(--bg-tertiary); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.85rem; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+.tag {
+  padding: 0.2rem 0.6rem; border-radius: 100px;
+  font-size: 0.75rem; font-weight: 500; border: 1px solid;
+}
+
+.deleteBtn {
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+.deleteBtn:hover { color: #ef4444; }
+
+.loading {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  height: 250px; gap: 1rem; color: var(--text-secondary);
+}
+
+.spin { animation: spin 1s linear infinite; color: var(--accent-primary); }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.emptyState {
+  padding: 3rem; text-align: center; color: var(--text-secondary);
+}
